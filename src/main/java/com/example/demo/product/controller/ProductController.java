@@ -18,7 +18,7 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.POST, value = "/create")
     public ResponseEntity create(ProductDto productDto){
         productService.create(productDto);
-        return ResponseEntity.ok().body("책 생성");
+        return ResponseEntity.ok().body("상품을 만들었습니다");
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/read")
@@ -30,9 +30,9 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/list")
-    public ResponseEntity list(){
+    public ResponseEntity list(Integer idx){
 
-        productService.list();
+        productService.list(idx);
 
 
         return ResponseEntity.ok().body("");
@@ -48,11 +48,11 @@ public class ProductController {
 
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete")
-    public ResponseEntity delete(){
+    public ResponseEntity delete(Integer idx){
 
-        productService.deelte();
+        productService.delte(idx);
 
-        return ResponseEntity.ok().body("");
+        return ResponseEntity.ok().body("상품이 삭제 되었습니다");
     }
 
 

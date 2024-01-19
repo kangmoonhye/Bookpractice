@@ -26,14 +26,18 @@ public class ProductService {
     public void read(){
 
     }
-    public void list(){
+    public void list(Integer idx){
 
     }
     public void update(){
 
     }
 
-    public void deelte(){
+    public void delte(Integer idx){
+        productRepository.delete(Product.builder()
+                .idx(idx)
+                .build());
+
 
     }
 
