@@ -2,9 +2,13 @@ package com.example.demo.product.service;
 
 import com.example.demo.product.model.Product;
 import com.example.demo.product.model.dto.ProductDto;
+import com.example.demo.product.model.dto.ProductRes;
 import com.example.demo.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,8 +30,28 @@ public class ProductService {
     public void read(){
 
     }
-    public void list(Integer idx){
+    public ProductRes list(){
 
+        List<Product> result = productRepository.findAll();
+        List<ProductDto> productDtos = new ArrayList<>();
+
+        for(ProductDto productDto: result){
+            ProductRes productRes = Product.builder()
+                    .idx(product.getIdx())
+                    .author(product.getAuthor())
+                    .genre(product.getGenre())
+                    .name(product.getName())
+                    .price(product.getPrice())
+                    .build();
+        }
+
+        return ProductRes.builder()
+                .code(1000)
+                .message("주문 불러오기에 성공 하였습니다")
+                .isSuccess(true)
+                .success(true)
+                .result()
+                .build();
     }
     public void update(){
 

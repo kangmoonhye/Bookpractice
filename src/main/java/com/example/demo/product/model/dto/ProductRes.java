@@ -12,6 +12,6 @@ public class ProductRes {
     String message;
     Boolean success;
     Boolean isSuccess;
-    ProductDto productDto;
+    ProductDto result;
 
 }
