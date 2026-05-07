@@ -5,6 +5,11 @@ logging:
 
 
 spring:
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 15MB
+
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
@@ -21,4 +26,11 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
     show-sql: true
+
+gcp:
+  storage:
+    bucket: ${GCP_BUCKET}
+    credentials: ${GCP_CREDENTIAL}
+
+
 

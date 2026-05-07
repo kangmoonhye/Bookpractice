@@ -2,10 +2,7 @@ package com.example.demo.product.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -16,11 +13,16 @@ import javax.persistence.Id;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer idx;
 
-    String name;
-    String publisher;
-    String author;
-    Integer price;
-    String genre;
+    private Integer idx;
+    private String productName;
+    private Integer price;
+
+    @Column(columnDefinition = "TEXT")
+    private String salesLink;
+
+    @Column(columnDefinition = "TEXT")
+    private String reviewLink;
+
+    private String imagePath;
 }

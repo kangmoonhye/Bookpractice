@@ -1,17 +1,19 @@
 package com.example.demo.product.model.dto;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
+
+import java.util.List;
 
 @Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-@Data
 public class ProductRes {
-    Integer code;
-    String message;
-    Boolean success;
-    Boolean isSuccess;
-    ProductDto result;
 
+    private Integer code;
+    private String message;
+    private Boolean isSuccess;
+    private Boolean success;
+    private List<ProductDto> result;
 }

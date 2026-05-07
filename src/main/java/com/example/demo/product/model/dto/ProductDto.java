@@ -1,17 +1,27 @@
 package com.example.demo.product.model.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
+import javax.persistence.Column;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-@Data
 public class ProductDto {
-    Integer idx;
 
-    String name;
-    String publisher;
-    String author;
-    Integer price;
-    String genre;
+    private Integer idx;
 
+    private String productName;
+
+    private Integer price;
+
+    @Column(columnDefinition = "TEXT")
+    private String salesLink;
+
+    @Column(columnDefinition = "TEXT")
+    private String reviewLink;
+
+    private String imagePath;
 }
