@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/product")
 @RequiredArgsConstructor
@@ -21,14 +21,28 @@ public class ProductController {
 
     @PostMapping("/create")
     public ResponseEntity<String> create(
-            @RequestParam String productName,
-            @RequestParam Integer price,
-            @RequestParam String salesLink,
-            @RequestParam String reviewLink,
-            @RequestParam(required = false) List<MultipartFile> images
+            @RequestParam(value = "productName") String productName,
+            @RequestParam(value = "price") Integer price,
+            @RequestParam(value = "salesLink") String salesLink,
+            @RequestParam(value = "reviewLink") String reviewLink,
+            @RequestParam(value = "images", required = false) List<MultipartFile> images
     ) throws IOException {
 
+        System.out.println("[Product create] productName = " + productName);
+        System.out.println("[Product create] images = " + images);
+        System.out.println("[Product create] images size = " + (images == null ? 0 : images.size()));
+
+        if (images != null) {
+            for (MultipartFile image : images) {
+                System.out.println("[Product create] file name = " + image.getOriginalFilename());
+                System.out.println("[Product create] file empty = " + image.isEmpty());
+                System.out.println("[Product create] file size = " + image.getSize());
+                System.out.println("[Product create] content type = " + image.getContentType());
+            }
+        }
+
         productService.create(productName, price, salesLink, reviewLink, images);
+
         return ResponseEntity.ok("상품 생성 완료");
     }
 
@@ -45,12 +59,22 @@ public class ProductController {
     @PatchMapping("/update/{idx}")
     public ResponseEntity<String> update(
             @PathVariable Integer idx,
-            @RequestParam String productName,
-            @RequestParam Integer price,
-            @RequestParam String salesLink,
-            @RequestParam String reviewLink,
-            @RequestParam(required = false) MultipartFile image
+            @RequestParam(value = "productName") String productName,
+            @RequestParam(value = "price") Integer price,
+            @RequestParam(value = "salesLink") String salesLink,
+            @RequestParam(value = "reviewLink") String reviewLink,
+            @RequestParam(value = "image", required = false) MultipartFile image
     ) throws IOException {
+
+        System.out.println("[Product update] idx = " + idx);
+        System.out.println("[Product update] image = " + image);
+
+        if (image != null) {
+            System.out.println("[Product update] file name = " + image.getOriginalFilename());
+            System.out.println("[Product update] file empty = " + image.isEmpty());
+            System.out.println("[Product update] file size = " + image.getSize());
+            System.out.println("[Product update] content type = " + image.getContentType());
+        }
 
         productService.update(idx, productName, price, salesLink, reviewLink, image);
 
