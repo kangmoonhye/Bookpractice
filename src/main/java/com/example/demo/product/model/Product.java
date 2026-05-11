@@ -1,5 +1,6 @@
 package com.example.demo.product.model;
 
+import com.example.demo.board.model.Board;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,4 +26,8 @@ public class Product {
     private String reviewLink;
 
     private String imagePath;
+
+    @ManyToOne
+    @JoinColumn(name = "board_id")
+    private Board board;
 }
