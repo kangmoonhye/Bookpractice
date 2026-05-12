@@ -127,7 +127,7 @@ public class ProductController {
     }
 
     // 게시판 안 상품 생성 API
-    @PostMapping("/boards/{boardIdx}/create")
+    @PostMapping("/create/{boardIdx}")
     public ResponseEntity<String> createByBoard(
             @PathVariable Integer boardIdx,
             @RequestParam(value = "productName") String productName,
@@ -154,7 +154,7 @@ public class ProductController {
     }
 
     // 게시판 안 상품 목록 API
-    @GetMapping("/boards/{boardIdx}/list")
+    @GetMapping("/list/{boardIdx}")
     public ResponseEntity<ProductRes> listByBoard(
             @PathVariable Integer boardIdx
     ) {
