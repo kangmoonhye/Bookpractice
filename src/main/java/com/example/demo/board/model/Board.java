@@ -26,4 +26,7 @@ public class Board {
 
     @Column(length = 255)
     private String password;
+
+    @Column(nullable = false, length = 30)
+    private String type; // product, account
 }

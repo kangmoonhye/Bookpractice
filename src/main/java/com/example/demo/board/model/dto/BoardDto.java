@@ -11,4 +11,5 @@ public class BoardDto {
     private Integer idx;
     private String name;
     private String password;
+    private String type;
 }
